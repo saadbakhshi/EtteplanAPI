@@ -11,8 +11,8 @@ parameters in the body of https POST request.
 PUT request can also update the task association with device
 
 Git
-//Script for dB
-//Code file
+https://github.com/saadbakhshi/Database.git
+https://github.com/saadbakhshi/EtteplanAPI.git
 
 Follow the following steps for execution of API:
 
