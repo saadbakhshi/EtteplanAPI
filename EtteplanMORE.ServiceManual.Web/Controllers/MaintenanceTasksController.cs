@@ -29,20 +29,12 @@ namespace EtteplanMORE.ServiceManual.Web.Controllers
             }
             else
             {
-                return Ok((maintenanceTasks.Select(mt => new MaintenanceTaskDTO()
-                {
-                    TaskId = mt.Id,
-                    DeviceId = mt.DeviceId,
-                    TaskDescription = mt.TaskDescription,
-                    RegisteredTime = Convert.ToString(mt.RegisteredTime),
-                    TaskSeverity = mt.TaskSeverity.ToString(),
-                    TaskStatus = mt.TaskStatus.ToString()
-                })));
+                return Ok(maintenanceTasks.Select(mt => TaskObject(mt)));
             } 
         }
 
-        [HttpGet("{id}/{searchBy}")]
-        public async Task<ActionResult<MaintenanceTaskDTO>> GetTasks(int id,string searchBy)
+        [HttpGet("{searchBy}/{id}")]
+        public async Task<ActionResult<MaintenanceTaskDTO>> GetTasks(string searchBy, int id)
         {
             if (searchBy == "device")
             {
@@ -62,15 +54,7 @@ namespace EtteplanMORE.ServiceManual.Web.Controllers
                     }
                     else
                     {
-                        return Ok(maintenanceTask.Select(mt => new MaintenanceTaskDTO()
-                        {
-                            TaskId = mt.Id,
-                            TaskDescription = mt.TaskDescription,
-                            DeviceId = mt.DeviceId,
-                            RegisteredTime = Convert.ToString(mt.RegisteredTime),
-                            TaskSeverity = mt.TaskSeverity.ToString(),
-                            TaskStatus = mt.TaskStatus.ToString()
-                        }));
+                        return Ok(maintenanceTask.Select(mt => TaskObject(mt)));
                     }
                 }
             }
@@ -83,15 +67,7 @@ namespace EtteplanMORE.ServiceManual.Web.Controllers
                     return NotFound($"No task with Id = {id}");
                 }
 
-                return Ok(new MaintenanceTaskDTO()
-                {
-                    TaskId = maintenanceTask.Id,
-                    TaskDescription = maintenanceTask.TaskDescription,
-                    DeviceId = maintenanceTask.DeviceId,
-                    RegisteredTime = Convert.ToString(maintenanceTask.RegisteredTime),
-                    TaskSeverity = maintenanceTask.TaskSeverity.ToString(),
-                    TaskStatus = maintenanceTask.TaskStatus.ToString()
-                });
+                return Ok(TaskObject(maintenanceTask));
             }
             else return BadRequest($"Cannot search by {searchBy}");
             
@@ -170,15 +146,7 @@ namespace EtteplanMORE.ServiceManual.Web.Controllers
 
             var createdTask = await _maintenanceTaskService.AddMaintenanceTask(newtask);
 
-            return CreatedAtAction(nameof(Get), new { id = createdTask.Id }, new MaintenanceTaskDTO()
-            {
-                TaskId = createdTask.Id,
-                DeviceId = createdTask.DeviceId,
-                TaskDescription = createdTask.TaskDescription,
-                RegisteredTime = createdTask.RegisteredTime.ToString(),
-                TaskSeverity = (createdTask.TaskSeverity).ToString(),
-                TaskStatus = (createdTask.TaskStatus).ToString()
-            });
+            return CreatedAtAction(nameof(Get), new { id = createdTask.Id }, TaskObject(createdTask));
         }
 
         [HttpPut("{id:int}")]
@@ -234,15 +202,20 @@ namespace EtteplanMORE.ServiceManual.Web.Controllers
             };
 
             var updatedTask = await _maintenanceTaskService.UpdateTask(task);
-            return Ok(new MaintenanceTaskDTO()
+            return Ok(TaskObject(updatedTask));
+        }
+
+        private MaintenanceTaskDTO TaskObject(MaintenanceTasks maintenanceTask)
+        {
+            return new MaintenanceTaskDTO()
             {
-                TaskId = updatedTask.Id,
-                DeviceId = updatedTask.DeviceId,
-                TaskDescription = updatedTask.TaskDescription,
-                RegisteredTime = updatedTask.RegisteredTime.ToString(),
-                TaskSeverity = (updatedTask.TaskSeverity).ToString(),
-                TaskStatus = (updatedTask.TaskStatus).ToString()
-            });
+                TaskId = maintenanceTask.Id,
+                TaskDescription = maintenanceTask.TaskDescription,
+                DeviceId = maintenanceTask.DeviceId,
+                RegisteredTime = Convert.ToString(maintenanceTask.RegisteredTime),
+                TaskSeverity = maintenanceTask.TaskSeverity.ToString(),
+                TaskStatus = maintenanceTask.TaskStatus.ToString()
+            };
         }
     }
 }

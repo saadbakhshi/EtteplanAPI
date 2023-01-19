@@ -9,8 +9,8 @@ namespace EtteplanMORE.ServiceManual.ApplicationCore.Entities
 {
     public class FactoryDevices
     {
-        public string DeviceName { get; set; }
         public int Id { get; set; }
+        public string DeviceName { get; set; }
         public int DeviceYear { get; set; }
         public string DeviceType { get; set; }
 
