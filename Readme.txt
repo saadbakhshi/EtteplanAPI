@@ -23,4 +23,5 @@ Follow the following steps for execution of API:
 	5. Run the solution
 	6. In the collection, update the https request with the URI of the machine where the solution is running
 	7. Https requests for PUT and POST have the json object in the body, update these objects as per your test cases
+	8. Send requests
 	
