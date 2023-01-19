@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "90ea11f2-02a3-48cf-8a8a-925973fb0cdb",
+		"name": "Etteplan Rest API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20601049"
+	},
+	"item": [
+		{
+			"name": "Get All Maintenance Tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/maintenancetasks/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"maintenancetasks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Maintenance Task by DeviceID or TaskID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:5001/api/maintenancetasks/4/device",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"maintenancetasks",
+						"4",
+						"device"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Maintenance Task by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:5001/api/maintenancetasks/5",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"maintenancetasks",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Maintenance Task by TaskId",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TaskId\":6,\r\n    \"DeviceID\":8,\r\n    \"TaskDescription\":\"Tampere\",\r\n    \"TaskSeverity\":\"Important\",\r\n    \"TaskStatus\":\"Close\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/maintenancetasks/6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"maintenancetasks",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"DeviceID\":5,\r\n    \"TaskDescription\":\"Gamma\",\r\n    \"TaskSeverity\":\"Important\",\r\n    \"TaskStatus\":\"Open\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/maintenancetasks/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"maintenancetasks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Factory Devices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/factorydevices/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"factorydevices",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

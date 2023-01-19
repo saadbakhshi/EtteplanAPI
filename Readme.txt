@@ -19,7 +19,7 @@ Follow the following steps for execution of API:
 	1. Execute the attached script in SQL server. The scripts are multi execution secure and it creates tables and runs a DML to insert data into these tables
 	2. Clone the attached project file
 	3. Update the connection string in appsettings.json
-	4. In the attached file is the postman collection, import this collection to postman.
+	4. Etteplan Rest API.postman_collection is the postman collection, import this collection to postman.
 	5. Run the solution
 	6. In the collection, update the https request with the URI of the machine where the solution is running
 	7. Https requests for PUT and POST have the json object in the body, update these objects as per your test cases
